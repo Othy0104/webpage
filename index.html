@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <h1>shmap 登録画面</h1>
+    <div class="container">
+
+        <!--GET--> 
+        <form method="GET" id="sheetdb-form-1" action="https://sheetdb.io/api/v1/f1gw7czp8ecyy">
+
+            <script>
+                var form = document.getElementById('sheetdb-form');
+                form.addEventListener("submit", e => {
+                    e.preventDefault();
+                    fetch(form.action, {
+                        method: "GET",
+                    }).then(
+                        response => response.json()
+                        ).then((html) => {
+                            alert('Data Received Successfully')
+                            window.open(html, '_blank');
+                        });
+                    });
+            </script>
+            
+                <div class="row">
+                    <input type="submit" value="現在のAPIのデータを取得">
+                </div>
+            </form>
+
+        <!--POST-->
+        <form method="POST" id="sheetdb-form-2" action="https://sheetdb.io/api/v1/f1gw7czp8ecyy">
+
+            <script>
+                var form = document.getElementById('sheetdb-form-2');
+                form.addEventListener("submit", e => {
+                    e.preventDefault();
+                    fetch(form.action, {
+                        method: "POST",
+                        body: new FormData(document.getElementById("sheetdb-form-2")),
+                    }).then(
+                        response => response.json()
+                    ).then((html) => {
+                        alert('Data Sent Successfully')
+                    });
+                });
+        </script>
+        
+            <div class="row">
+                <div class="col-25">
+                    <label for="name">地域名</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="area" name="data[地域名]" placeholder="地域名" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">神社名</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="name" name="data[神社名]" placeholder="神社名" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">御祭神</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="god" name="data[御祭神]" placeholder="神様の名前" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">神社のサイト</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="hp" name="data[神社のHP・サイト]" placeholder="ホームページのURL" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">郵便番号</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="post" name="data[郵便番号]" placeholder="郵便番号" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">住所</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="address" name="data[住所]" placeholder="住所" required>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="データを追加">
+            </div>
+        </form>
+
+        <form method="DELETE" id="sheetdb-form-3" action="https://sheetdb.io/api/v1/f1gw7czp8ecyy">
+
+            <script>
+                var form = document.getElementById('sheetdb-form-3');
+                form.addEventListener("submit", e => {
+                    e.preventDefault();
+                    fetch(form.action, {
+                        method: "DELETE",
+                        body: new FormData(document.getElementById("sheetdb-form-3")),
+                    }).then(
+                        response => response.json()
+                    ).then((html) => {
+                        alert('Data Deleted Successfully')
+                    });
+                });
+        </script>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">ID</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="ID" name="data[ID]" placeholder="ID" required>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="DELETE">
+            </div>
+        </form>
+
+
+    </div>
+
+</body>
+
+</html>
